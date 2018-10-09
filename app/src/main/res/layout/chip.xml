@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Button
+<com.google.android.material.chip.Chip
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/button"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/metro"
-    style="@style/Widget.MaterialComponents.Button.Icon"
+    style="@style/Widget.MaterialComponents.Chip.Entry"
     app:backgroundTint="#e8e8e8"
-    app:cornerRadius="10dp"
-    app:icon="@drawable/ic_directions_subway_black_24dp"
-    app:rippleColor="@color/colorAccent" />
-
-
-
+    app:chipIcon="@drawable/ic_directions_subway_black_24dp"
+    app:rippleColor="@color/colorAccent"/>

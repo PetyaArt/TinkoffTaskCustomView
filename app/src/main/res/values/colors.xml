@@ -16,5 +16,15 @@
         <item name="pink">#ffcae6</item>
         <item name="purple">#901a94</item>
         <item name="yellow">#ffc124</item>
+        <item name="orange">#FF6F00</item>
+        <item name="brown">#613812</item>
+        <item name="gray">#a5a5a5</item>
+        <item name="orange">#FF6F00</item>
+        <item name="pink">#ffcae6</item>
+        <item name="yellow">#ffc124</item>
+        <item name="brown">#613812</item>
+        <item name="green">#199619</item>
+        <item name="pink">#ffcae6</item>
+        <item name="orange">#FF6F00</item>
     </array>
 </resources>

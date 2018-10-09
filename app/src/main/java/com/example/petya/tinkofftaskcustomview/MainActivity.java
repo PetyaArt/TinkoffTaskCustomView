@@ -3,12 +3,10 @@ package com.example.petya.tinkofftaskcustomview;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
-import com.google.android.material.button.MaterialButton;
+import com.google.android.material.chip.Chip;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -18,7 +16,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private String[] mNameMetro = {"Юго-Западная", "Беляево", "ВДНХ", "Охотный ряд",
                                     "Водный стадион", "Добрынинская", "Тульская",
-                                    "Крымская", "Выхино", "Марксисткая"};
+                                    "Крымская", "Выхино", "Марксисткая",
+                                    "Шаболовская", "Киевская", "Тульская",
+                                    "Ленинский проспект", "ЗИЛ", "Авиамоторная",
+                                    "Курская", "Речной вокзал", "Единороги", "Теплый Стан"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +31,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int[] mColorMetro = getResources().getIntArray(R.array.colorMetro);
 
         for (int i = 0; i < mNameMetro.length / 2; i++) {
-            MaterialButton view = (MaterialButton) getLayoutInflater().inflate(R.layout.button, null, false);
-            view.setOnClickListener(this);
+            Chip view = (Chip) getLayoutInflater().inflate(R.layout.chip, null, false);
+            view.setOnCloseIconClickListener(this);
             view.setText(mNameMetro[i]);
             view.setTextColor(mColorMetro[i]);
-            view.setIconTint(ColorStateList.valueOf(mColorMetro[i]));
+            view.setChipIconTint(ColorStateList.valueOf(mColorMetro[i]));
             mViewGroupUp.addView(view);
 
-            MaterialButton view2 = (MaterialButton) getLayoutInflater().inflate(R.layout.button, null, false);
-            view2.setOnClickListener(this);
-            view2.setText(mNameMetro[i + 5]);
-            view2.setTextColor(mColorMetro[i + 5]);
-            view2.setIconTint(ColorStateList.valueOf(mColorMetro[i + 5]));
+            Chip view2 = (Chip) getLayoutInflater().inflate(R.layout.chip, null, false);
+            view2.setOnCloseIconClickListener(this);
+            view2.setText(mNameMetro[i + mNameMetro.length / 2]);
+            view2.setTextColor(mColorMetro[i + mNameMetro.length / 2]);
+            view2.setChipIconTint(ColorStateList.valueOf(mColorMetro[i + mNameMetro.length / 2]));
             mViewGroupDown.addView(view2);
         }
     }
