@@ -19,23 +19,14 @@ public class CustomViewGroup extends ViewGroup {
         super(context, attrs, defStyleAttr);
     }
 
-
-    public boolean isContains(View view) {
-        for (int i = 0; i < getChildCount(); i++) {
-            if (getChildAt(i).equals(view))
-                return true;
-        }
-        return false;
-    }
-
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int childCount = getChildCount();
 
         int parentWidth = MeasureSpec.getSize(widthMeasureSpec);
 
-        int curWidth = 0;
-        int curHeight = 0;
+        int curWidth;
+        int curHeight;
 
         int maxWidth = 0;
         int minHeight = 0;
@@ -81,6 +72,8 @@ public class CustomViewGroup extends ViewGroup {
         int mainCounterThree = 0;
         int topHeight = 0;
         int childNow = 0;
+
+
         while (mainCounter > 0) {
 
             if (getChildAt(mainCounter - 1).getVisibility() == GONE) {
@@ -89,11 +82,13 @@ public class CustomViewGroup extends ViewGroup {
 
             for (int j = 0; j < mainCounter; j++) {
                 View child = getChildAt(mainCounterThree);
-                curWidth = child.getMeasuredWidth();
+                MarginLayoutParams layoutParams = (MarginLayoutParams) child.getLayoutParams();
+                curWidth = child.getMeasuredWidth() + layoutParams.leftMargin + layoutParams.rightMargin;
+
                 if (maxWidth - curWidth <= minWidth) {
                     j = mainCounter;
                 } else {
-                    maxWidth -= curWidth + 20;
+                    maxWidth -= curWidth;
                     childNow++;
                     mainCounterThree++;
                 }
@@ -101,11 +96,15 @@ public class CustomViewGroup extends ViewGroup {
 
             for (int j = 0; j < childNow; j++) {
                 View child = getChildAt(mainCounterTwo);
+
+                MarginLayoutParams layoutParams = (MarginLayoutParams) child.getLayoutParams();
+
                 curWidth = child.getMeasuredWidth();
                 curHeight = child.getMeasuredHeight();
+
                 child.layout(maxWidth, curTop, maxWidth + curWidth, curTop + curHeight);
-                topHeight = curHeight;
-                maxWidth += curWidth + 20;
+                topHeight = curHeight + layoutParams.topMargin + layoutParams.bottomMargin;
+                maxWidth += curWidth  + layoutParams.leftMargin + layoutParams.rightMargin;
                 mainCounter--;
                 mainCounterTwo++;
             }
@@ -115,4 +114,28 @@ public class CustomViewGroup extends ViewGroup {
             maxWidth = getMeasuredWidth() - getPaddingRight();
         }
     }
+
+    @Override
+    public ViewGroup.LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new MarginLayoutParams(getContext(), attrs);
+    }
+
+    @Override
+    protected ViewGroup.LayoutParams generateLayoutParams(ViewGroup.LayoutParams p) {
+        return new MarginLayoutParams(p);
+    }
+
+    @Override
+    protected ViewGroup.LayoutParams generateDefaultLayoutParams() {
+        return new MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+    }
+
+    @Override
+    protected boolean checkLayoutParams(ViewGroup.LayoutParams p) {
+        return p instanceof MarginLayoutParams;
+    }
+
+
+
+
 }

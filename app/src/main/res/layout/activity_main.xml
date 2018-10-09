@@ -7,12 +7,20 @@
 
     <com.example.petya.tinkofftaskcustomview.CustomViewGroup
         android:id="@+id/custom_view_group_up"
+        android:layout_margin="5dp"
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorPrimary">
+    </View>
+
     <com.example.petya.tinkofftaskcustomview.CustomViewGroup
         android:id="@+id/custom_view_group_down"
+        android:layout_margin="5dp"
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

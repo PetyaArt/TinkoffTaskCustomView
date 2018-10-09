@@ -1,12 +1,12 @@
 package com.example.petya.tinkofftaskcustomview;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.chip.Chip;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -31,14 +31,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int[] mColorMetro = getResources().getIntArray(R.array.colorMetro);
 
         for (int i = 0; i < mNameMetro.length / 2; i++) {
-            Chip view = (Chip) getLayoutInflater().inflate(R.layout.chip, null, false);
+            Chip view = (Chip) getLayoutInflater().inflate(R.layout.chip, mViewGroupUp, false);
             view.setOnCloseIconClickListener(this);
             view.setText(mNameMetro[i]);
             view.setTextColor(mColorMetro[i]);
             view.setChipIconTint(ColorStateList.valueOf(mColorMetro[i]));
             mViewGroupUp.addView(view);
 
-            Chip view2 = (Chip) getLayoutInflater().inflate(R.layout.chip, null, false);
+            Chip view2 = (Chip) getLayoutInflater().inflate(R.layout.chip, mViewGroupDown, false);
             view2.setOnCloseIconClickListener(this);
             view2.setText(mNameMetro[i + mNameMetro.length / 2]);
             view2.setTextColor(mColorMetro[i + mNameMetro.length / 2]);
@@ -49,10 +49,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        if (mViewGroupDown.isContains(v)) {
+        if (v.getParent() == mViewGroupDown) {
             mViewGroupDown.removeView(v);
             mViewGroupUp.addView(v);
-        } else if (mViewGroupUp.isContains(v)){
+        } else {
             mViewGroupUp.removeView(v);
             mViewGroupDown.addView(v);
         }
